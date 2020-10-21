@@ -7,8 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="500">
     <Grid x:Name="grid">
-        <Canvas Background="Red" x:Name="canvas" Grid.Column="0" Grid.Row="0" 
+        <Canvas x:Name="canvas" Grid.Column="0" Grid.Row="0" 
                 Width="{Binding ElementName=grid, Path=ActualWidth}"
-                Height="{Binding ElementName=grid, Path=ActualHeight}"></Canvas>
+                Height="{Binding ElementName=grid, Path=ActualHeight}">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/img/cardbackground.png"/>
+            </Canvas.Background>
+        </Canvas>
     </Grid>
 </UserControl>

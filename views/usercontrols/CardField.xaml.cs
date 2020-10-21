@@ -54,6 +54,7 @@ namespace memory.views.usercontrols
             {
                 case CardStatus.CLOSED:
                     Console.WriteLine("new Value is CLOSED");
+                    
                     break;
                 case CardStatus.FOUND:
                     Console.WriteLine("new Value is FOUND");
