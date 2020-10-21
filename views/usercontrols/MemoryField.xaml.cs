@@ -24,5 +24,7 @@ namespace memory.views.usercontrols
         {
             InitializeComponent();
         }
+
+        public string Theme { get; set; }
     }
 }
