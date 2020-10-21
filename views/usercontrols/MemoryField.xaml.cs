@@ -1,4 +1,5 @@
-﻿using System;
+﻿using memory.utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,17 @@ namespace memory.views.usercontrols
     /// </summary>
     public partial class MemoryField : UserControl
     {
+       
         public MemoryField()
         {
             InitializeComponent();
+            Status = CardStatus.CLOSED;
         }
 
         public string Theme { get; set; }
+       
+        public CardStatus Status { get; set; }
+
+
     }
 }

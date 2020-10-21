@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="utils\CardStatus.cs" />
     <Compile Include="views\usercontrols\MemoryField.xaml.cs">
       <DependentUpon>MemoryField.xaml</DependentUpon>
     </Compile>
@@ -102,8 +103,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="img\disney\" />
     <Folder Include="models\" />
     <Folder Include="viewmodels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\cardbackground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
