@@ -56,8 +56,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="utils\CardStatus.cs" />
-    <Compile Include="views\usercontrols\MemoryField.xaml.cs">
-      <DependentUpon>MemoryField.xaml</DependentUpon>
+    <Compile Include="views\usercontrols\CardField.xaml.cs">
+      <DependentUpon>CardField.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -71,7 +71,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="views\usercontrols\MemoryField.xaml">
+    <Page Include="views\usercontrols\CardField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
