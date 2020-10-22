@@ -18,8 +18,7 @@ namespace memory.viewmodels
 
         public MemoryGame Game
         {
-            get { return _Game; }
-            set { _Game = value; }
+            get {return _Game; }
         }
     }
 }

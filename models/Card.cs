@@ -12,7 +12,7 @@ namespace memory.models
         public Card(int id)
         {
             Id = id;
-            Status = CardStatus.CLOSED;
+            Status = CardStatus.OPEN;
         }
 
         public int Id { get; set; }

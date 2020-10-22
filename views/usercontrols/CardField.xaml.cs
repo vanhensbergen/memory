@@ -37,6 +37,7 @@ namespace memory.views.usercontrols
         }
         private void SetCardImageBrush()
         {
+            //Console.WriteLine("in SetCardImageBrush: CardId is: " + CardId);
             _CardImageBrush = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/memory;component/img/" + Theme + "/" + CardId + ".jpg", UriKind.RelativeOrAbsolute)));
             
         }
@@ -78,7 +79,7 @@ namespace memory.views.usercontrols
                     Console.WriteLine("new Value is FOUND");
                     break;
                 case CardStatus.OPEN:
-                    Console.WriteLine("new value is OPEN");
+                    Console.WriteLine("new value is OPEN" +CardId);
                     canvas.Background = _CardImageBrush;
                     break;
             }
