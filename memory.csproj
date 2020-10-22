@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="models\Card.cs" />
     <Compile Include="utils\CardStatus.cs" />
     <Compile Include="views\usercontrols\CardField.xaml.cs">
       <DependentUpon>CardField.xaml</DependentUpon>
@@ -103,7 +104,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="models\" />
     <Folder Include="viewmodels\" />
   </ItemGroup>
   <ItemGroup>

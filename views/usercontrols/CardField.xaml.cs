@@ -22,13 +22,24 @@ namespace memory.views.usercontrols
     /// </summary>
     public partial class CardField : UserControl
     {
-       private static readonly ImageBrush BACKGROUND_BRUSH = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/memory;component/img/cardbackground.png", UriKind.RelativeOrAbsolute)));
+        private static readonly ImageBrush BACKGROUND_BRUSH = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/memory;component/img/cardbackground.png", UriKind.RelativeOrAbsolute)));
+        private ImageBrush _CardImageBrush;
         public CardField()
         {
             InitializeComponent();
-            Status = CardStatus.CLOSED;
+            Theme = "disney";
         }
 
+        private void Initialize()
+        {
+            SetCardImageBrush();
+            ShowStatus(Status);
+        }
+        private void SetCardImageBrush()
+        {
+            _CardImageBrush = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/memory;component/img/" + Theme + "/" + CardId + ".jpg", UriKind.RelativeOrAbsolute)));
+            
+        }
         public string Theme { get; set; }
 
 
@@ -50,10 +61,17 @@ namespace memory.views.usercontrols
 
         private void OnStatusChanged(DependencyPropertyChangedEventArgs e)
         {
-            switch ((CardStatus)e.NewValue)
+            CardStatus status = (CardStatus)e.NewValue;
+            ShowStatus(status);
+
+        }
+
+        private void ShowStatus(CardStatus status)
+        {
+            switch (status)
             {
                 case CardStatus.CLOSED:
-                    Console.WriteLine("new Value is CLOSED: "+CardId);
+                    Console.WriteLine("new Value is CLOSED");
                     canvas.Background = BACKGROUND_BRUSH;
                     break;
                 case CardStatus.FOUND:
@@ -61,10 +79,10 @@ namespace memory.views.usercontrols
                     break;
                 case CardStatus.OPEN:
                     Console.WriteLine("new value is OPEN");
+                    canvas.Background = _CardImageBrush;
                     break;
             }
         }
-
 
         public int CardId
         {
@@ -74,10 +92,14 @@ namespace memory.views.usercontrols
 
         // Using a DependencyProperty as the backing store for CardId.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CardIdProperty =
-            DependencyProperty.Register("CardId", typeof(int), typeof(CardField), new PropertyMetadata(0));
+            DependencyProperty.Register("CardId", typeof(int), typeof(CardField), new PropertyMetadata(OnCardIdChanged));
 
+        private static void OnCardIdChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            CardField Control = d as CardField;
+            Control.SetCardImageBrush();
+        }
 
-
-
+       
     }
 }

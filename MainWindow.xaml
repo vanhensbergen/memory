@@ -27,8 +27,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <usercontrols:CardField  Grid.Column="0" Grid.Row="0" Status="CLOSED" CardId="111"></usercontrols:CardField>
-        <usercontrols:CardField  Grid.Column="1" Grid.Row="0" Status="CLOSED" CardId="222"></usercontrols:CardField>
+        <usercontrols:CardField  Grid.Column="0" Grid.Row="0" Status="OPEN" CardId="1"></usercontrols:CardField>
+        <usercontrols:CardField  Grid.Column="1" Grid.Row="0" Status="OPEN" CardId="2"></usercontrols:CardField>
         
     </Grid>
 </Window>
