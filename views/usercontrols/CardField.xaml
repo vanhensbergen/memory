@@ -10,9 +10,7 @@
         <Canvas x:Name="canvas" Grid.Column="0" Grid.Row="0" 
                 Width="{Binding ElementName=grid, Path=ActualWidth}"
                 Height="{Binding ElementName=grid, Path=ActualHeight}">
-            <Canvas.Background>
-                <ImageBrush ImageSource="/img/cardbackground.png"/>
-            </Canvas.Background>
+            
         </Canvas>
     </Grid>
 </UserControl>

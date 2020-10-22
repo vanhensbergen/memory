@@ -22,7 +22,7 @@ namespace memory.views.usercontrols
     /// </summary>
     public partial class CardField : UserControl
     {
-       
+       private static readonly ImageBrush BACKGROUND_BRUSH = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/memory;component/img/cardbackground.png", UriKind.RelativeOrAbsolute)));
         public CardField()
         {
             InitializeComponent();
@@ -53,8 +53,8 @@ namespace memory.views.usercontrols
             switch ((CardStatus)e.NewValue)
             {
                 case CardStatus.CLOSED:
-                    Console.WriteLine("new Value is CLOSED");
-                    
+                    Console.WriteLine("new Value is CLOSED: "+CardId);
+                    canvas.Background = BACKGROUND_BRUSH;
                     break;
                 case CardStatus.FOUND:
                     Console.WriteLine("new Value is FOUND");
@@ -64,6 +64,19 @@ namespace memory.views.usercontrols
                     break;
             }
         }
+
+
+        public int CardId
+        {
+            get { return (int)GetValue(CardIdProperty); }
+            set { SetValue(CardIdProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CardId.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CardIdProperty =
+            DependencyProperty.Register("CardId", typeof(int), typeof(CardField), new PropertyMetadata(0));
+
+
 
 
     }

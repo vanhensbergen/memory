@@ -103,12 +103,37 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="img\disney\" />
     <Folder Include="models\" />
     <Folder Include="viewmodels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\cardbackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\disney\1.jpg" />
+    <Resource Include="img\disney\10.jpg" />
+    <Resource Include="img\disney\11.jpg" />
+    <Resource Include="img\disney\12.jpg" />
+    <Resource Include="img\disney\13.jpg" />
+    <Resource Include="img\disney\14.jpg" />
+    <Resource Include="img\disney\15.jpg" />
+    <Resource Include="img\disney\16.jpg" />
+    <Resource Include="img\disney\17.jpg" />
+    <Resource Include="img\disney\18.jpg" />
+    <Resource Include="img\disney\19.jpg" />
+    <Resource Include="img\disney\2.jpg" />
+    <Resource Include="img\disney\20.jpg" />
+    <Resource Include="img\disney\21.jpg" />
+    <Resource Include="img\disney\22.jpg" />
+    <Resource Include="img\disney\23.jpg" />
+    <Resource Include="img\disney\24.jpg" />
+    <Resource Include="img\disney\3.jpg" />
+    <Resource Include="img\disney\4.jpg" />
+    <Resource Include="img\disney\5.jpg" />
+    <Resource Include="img\disney\6.jpg" />
+    <Resource Include="img\disney\7.jpg" />
+    <Resource Include="img\disney\8.jpg" />
+    <Resource Include="img\disney\9.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

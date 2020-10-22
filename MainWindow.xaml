@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:memory"
         xmlns:usercontrols="clr-namespace:memory.views.usercontrols"
         mc:Ignorable="d"
-        Title="memory" Height="800" Width="1000">
+        Title="memory" Height="800" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -27,8 +27,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <usercontrols:CardField  Grid.Column="0" Grid.Row="0" Status="CLOSED"></usercontrols:CardField>
-        <usercontrols:CardField  Grid.Column="1" Grid.Row="0" Status="OPEN"></usercontrols:CardField>
+        <usercontrols:CardField  Grid.Column="0" Grid.Row="0" Status="CLOSED" CardId="111"></usercontrols:CardField>
+        <usercontrols:CardField  Grid.Column="1" Grid.Row="0" Status="CLOSED" CardId="222"></usercontrols:CardField>
         
     </Grid>
 </Window>
