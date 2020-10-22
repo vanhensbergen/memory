@@ -12,8 +12,9 @@ namespace memory
 
         public MainWindow()
         {
-            InitializeComponent();
             DataContext = new MainWindowViewModel();
+            InitializeComponent();
+            
         }
 
 

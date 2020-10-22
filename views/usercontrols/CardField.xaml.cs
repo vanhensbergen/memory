@@ -23,23 +23,17 @@ namespace memory.views.usercontrols
     public partial class CardField : UserControl
     {
         private static readonly ImageBrush BACKGROUND_BRUSH = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/memory;component/img/cardbackground.png", UriKind.RelativeOrAbsolute)));
-        private ImageBrush _CardImageBrush;
+        private ImageBrush FrontImageBrush=null;
         public CardField()
         {
             InitializeComponent();
             Theme = "disney";
         }
 
-        private void Initialize()
+        
+        private void SetFrontImageBrush()
         {
-            SetCardImageBrush();
-            ShowStatus(Status);
-        }
-        private void SetCardImageBrush()
-        {
-            //Console.WriteLine("in SetCardImageBrush: CardId is: " + CardId);
-            _CardImageBrush = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/memory;component/img/" + Theme + "/" + CardId + ".jpg", UriKind.RelativeOrAbsolute)));
-            
+            FrontImageBrush = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/memory;component/img/" + Theme + "/" + CardId + ".jpg", UriKind.RelativeOrAbsolute)));
         }
         public string Theme { get; set; }
 
@@ -52,35 +46,29 @@ namespace memory.views.usercontrols
 
         // Using a DependencyProperty as the backing store for Status.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StatusProperty =
-            DependencyProperty.Register("Status", typeof(CardStatus), typeof(CardField), new PropertyMetadata(OnStatusChanged));
+            DependencyProperty.Register("Status", typeof(CardStatus), typeof(CardField), new PropertyMetadata(CardStatus.FOUND,OnStatusChanged));
 
         private static void OnStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             CardField card = d as CardField;
-            card.OnStatusChanged(e);
+            card.OnChange();
         }
 
-        private void OnStatusChanged(DependencyPropertyChangedEventArgs e)
-        {
-            CardStatus status = (CardStatus)e.NewValue;
-            ShowStatus(status);
 
-        }
-
-        private void ShowStatus(CardStatus status)
+        private void SetBackgroundBrush()
         {
-            switch (status)
+            switch (Status)
             {
                 case CardStatus.CLOSED:
-                    Console.WriteLine("new Value is CLOSED");
                     canvas.Background = BACKGROUND_BRUSH;
+                    Console.WriteLine("new Value is CLOSED");
                     break;
                 case CardStatus.FOUND:
                     Console.WriteLine("new Value is FOUND");
                     break;
                 case CardStatus.OPEN:
-                    Console.WriteLine("new value is OPEN" +CardId);
-                    canvas.Background = _CardImageBrush;
+                    Console.WriteLine("new value is OPEN"+CardId);
+                   canvas.Background = FrontImageBrush;
                     break;
             }
         }
@@ -93,14 +81,23 @@ namespace memory.views.usercontrols
 
         // Using a DependencyProperty as the backing store for CardId.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CardIdProperty =
-            DependencyProperty.Register("CardId", typeof(int), typeof(CardField), new PropertyMetadata(OnCardIdChanged));
+            DependencyProperty.Register("CardId", typeof(int), typeof(CardField), new PropertyMetadata(-1,OnCardIdChanged));
 
         private static void OnCardIdChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             CardField Control = d as CardField;
-            Control.SetCardImageBrush();
+            Control.OnChange();
         }
 
-       
+        public void OnChange()
+        {
+            if (CardId != -1)
+            {
+                SetFrontImageBrush();
+                SetBackgroundBrush();
+            }
+        }
+
+
     }
 }

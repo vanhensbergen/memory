@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
@@ -7,22 +8,26 @@ using System.Threading.Tasks;
 
 namespace memory.models
 {
-    public class MemoryGame
+    public class MemoryGame:INotifyPropertyChanged
     {
-        private List<Card> _Cards;
         public MemoryGame()
         {
-            _Cards = new List<Card>();
+            Cards = new List<Card>();
             for(int i=1; i<25; i++)
             {
-                _Cards.Add(new Card(i));
-                _Cards.Add(new Card(i));
+                Cards.Add(new Card(i));
+                Cards.Add(new Card(i));
             }
+           // Shuffle();
         }
-        public List<Card> Cards
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyname)
         {
-            get { return _Cards; }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
+        public List<Card> Cards { get; }
 
         public void Shuffle()
         {
