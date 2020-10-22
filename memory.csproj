@@ -56,7 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="models\Card.cs" />
+    <Compile Include="models\MemoryGame.cs" />
     <Compile Include="utils\CardStatus.cs" />
+    <Compile Include="viewmodels\MainWindowViewModel.cs" />
     <Compile Include="views\usercontrols\CardField.xaml.cs">
       <DependentUpon>CardField.xaml</DependentUpon>
     </Compile>
@@ -103,9 +105,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="viewmodels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="img\cardbackground.png" />
   </ItemGroup>
