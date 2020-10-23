@@ -11,9 +11,12 @@
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
-            <Style x:Key="cardfieldcommand" TargetType="usercontrols:CardField">
+            <Style x:Key="cardfield" TargetType="usercontrols:CardField">
                 <Setter Property="Command" Value="{Binding ElementName=itemscontrol, Path=DataContext.OpenCardCommand }"/>
                 <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Self},Path=DataContext}"/>
+                <Setter Property="Width" Value="98"/>
+                <Setter Property="Height" Value="126"/>
+                <Setter Property="Padding" Value="4"/>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -24,8 +27,7 @@
                     <usercontrols:CardField
                         CardId="{Binding Id, Mode=OneWay}"
                         Status="{Binding Status, Mode=OneWay}"
-                        Width="98" Height="126" Padding="4"
-                        Style="{StaticResource cardfieldcommand}"
+                        Style="{StaticResource cardfield}"
                         />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

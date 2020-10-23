@@ -1,18 +1,16 @@
 ﻿using memory.utils;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 
 namespace memory.models
 {
-    public class MemoryGame : INotifyPropertyChanged
+    public class MemoryGame
     {
         private const  int DELAY_TIME = 3000;
+        public List<Card> Cards { get; }
+        internal List<CardPlayer> Players { get; private set; }
         public MemoryGame()
         {
             Cards = new List<Card>();
@@ -21,14 +19,32 @@ namespace memory.models
                 Cards.Add(new Card(i));
                 Cards.Add(new Card(i));
             }
+            Players = new List<CardPlayer>
+            {
+                new CardPlayer("player1")
+                {
+                    IsActive = true
+                },
+                new CardPlayer("player2")
+                {
+                    IsActive = false
+                }
+            };
             Shuffle();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyname)
+        private CardPlayer ActivePlayer
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+            get { return Players.Find(x => x.IsActive); }
+        }
+
+        private void SwapPlayers()
+        {
+            int k = Players.FindIndex(x=>x==ActivePlayer);
+            ActivePlayer.IsActive = false;
+            int n = Players.Count;
+            Players[(k + 1) % n].IsActive = true;
+            Console.WriteLine(ActivePlayer.Name);
         }
 
         public bool AcceptMove(Card card)
@@ -70,22 +86,18 @@ namespace memory.models
 
         private void OnDelayEnded(Task obj)
         {
+            Frozen = false;
             List<Card> openedCards = Cards.FindAll(x => x.Status == CardStatus.OPEN);
             if (openedCards[0].Equals(openedCards[1]))
             {
                 openedCards.ForEach(x => x.Status = CardStatus.FOUND);
+                ActivePlayer.AddFoundCards(openedCards);
+                return;
             }
-            Cards.ForEach(x =>
-            {
-                if (x.Status != CardStatus.FOUND)
-                {
-                    x.Status = CardStatus.CLOSED;
-                }
-            });
-               
-            Frozen = false;
+            openedCards.ForEach(x => x.Status = CardStatus.CLOSED);
+            SwapPlayers(); 
         }
-        public List<Card> Cards { get; }
+        
 
         public void Shuffle()
         {
