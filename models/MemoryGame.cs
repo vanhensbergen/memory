@@ -1,4 +1,5 @@
-﻿using System;
+﻿using memory.utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
@@ -18,7 +19,7 @@ namespace memory.models
                 Cards.Add(new Card(i));
                 Cards.Add(new Card(i));
             }
-           // Shuffle();
+            //Shuffle();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,7 +41,6 @@ namespace memory.models
                 Card tmp = Cards[k];
                 Cards[k] = Cards[n];
                 Cards[n] = tmp;
-
             }
         }
     }

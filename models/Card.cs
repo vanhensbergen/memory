@@ -10,9 +10,11 @@ namespace memory.models
 {
     public class Card:INotifyPropertyChanged
     {
+        private int _Id;
+        private CardStatus _Status;
         public Card(int id)
         {
-            Id = id;
+            _Id = id;
             Status = CardStatus.CLOSED;
         }
 
@@ -22,9 +24,20 @@ namespace memory.models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
-        public int Id { get; set; }
+        
+        
 
-        public CardStatus Status{ get; set; }
+        public int Id
+        {
+            get { return _Id; }
+            set { _Id = value; OnPropertyChanged("Id"); }
+        }
+
+        public CardStatus Status
+        {
+            get { return _Status; }
+            set { _Status = value; OnPropertyChanged("Status"); }
+        }
 
         public bool Equals(Card card)
         {

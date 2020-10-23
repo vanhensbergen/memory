@@ -5,12 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:memory.views.usercontrols"
              mc:Ignorable="d" 
+             x:Name="cardfield"
              d:DesignHeight="800" d:DesignWidth="500">
-    <Grid x:Name="grid">
-        <Canvas x:Name="canvas" Grid.Column="0" Grid.Row="0" 
-                Width="{Binding ElementName=grid, Path=ActualWidth}"
-                Height="{Binding ElementName=grid, Path=ActualHeight}">
+    <Button x:Name="button" 
+            Command="{Binding ElementName=cardfield,Path=Command}"
+            CommandParameter="{Binding ElementName=cardfield, Path=CommandParameter}">
+        <Canvas x:Name="canvas"
+                Width="{Binding ElementName=button, Path=ActualWidth}"
+                Height="{Binding ElementName=button, Path=ActualHeight}">
             
         </Canvas>
-    </Grid>
+    </Button>
 </UserControl>

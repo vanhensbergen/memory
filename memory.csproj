@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="commands\RelayCommand.cs" />
     <Compile Include="models\Card.cs" />
     <Compile Include="models\MemoryGame.cs" />
     <Compile Include="utils\CardStatus.cs" />

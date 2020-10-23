@@ -46,28 +46,27 @@ namespace memory.views.usercontrols
 
         // Using a DependencyProperty as the backing store for Status.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StatusProperty =
-            DependencyProperty.Register("Status", typeof(CardStatus), typeof(CardField), new PropertyMetadata(CardStatus.FOUND,OnStatusChanged));
+            DependencyProperty.Register("Status", typeof(CardStatus), typeof(CardField), new PropertyMetadata(CardStatus.CLOSED,OnStatusChanged));
 
         private static void OnStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            CardField card = d as CardField;
-            card.OnChange();
+            CardField Control = d as CardField;
+            Control.OnChange();
         }
 
 
-        private void SetBackgroundBrush()
+        private void Show()
         {
             switch (Status)
             {
                 case CardStatus.CLOSED:
                     canvas.Background = BACKGROUND_BRUSH;
-                    Console.WriteLine("new Value is CLOSED");
                     break;
                 case CardStatus.FOUND:
-                    Console.WriteLine("new Value is FOUND");
+                    SolidColorBrush fillColor = new SolidColorBrush(Colors.Black);
+                    canvas.Background = fillColor;
                     break;
                 case CardStatus.OPEN:
-                    Console.WriteLine("new value is OPEN"+CardId);
                    canvas.Background = FrontImageBrush;
                     break;
             }
@@ -94,8 +93,28 @@ namespace memory.views.usercontrols
             if (CardId != -1)
             {
                 SetFrontImageBrush();
-                SetBackgroundBrush();
+                Show();
             }
+        }
+
+
+        public ICommand Command
+        {
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Command.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CommandProperty =
+            DependencyProperty.Register("Command", typeof(ICommand), typeof(CardField), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty CommandParameterProperty =
+           DependencyProperty.Register("CommandParameter", typeof(object), typeof(CardField), new PropertyMetadata(null));
+
+        public object CommandParameter
+        {
+            get { return GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
         }
 
 
