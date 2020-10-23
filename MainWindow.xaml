@@ -9,14 +9,14 @@
         x:Name="mainwindow"
         Title="memory" Height="800" Width="800">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black">
-        <ItemsControl ItemsSource="{Binding Game.Cards, Mode=OneTime}" >
+        <ItemsControl ItemsSource="{Binding Game.Cards, Mode=OneTime}" x:Name="itemscontrol">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <usercontrols:CardField
                         CardId="{Binding Id, Mode=OneWay}"
                         Status="{Binding Status, Mode=OneWay}"
                         Width="98" Height="126" Padding="4"
-                        Command="{Binding ElementName=mainwindow, Path = DataContext.OpenCardCommand}"
+                        Command="{Binding ElementName=itemscontrol, Path = DataContext.OpenCardCommand}"
                         CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                         />
                 </DataTemplate>

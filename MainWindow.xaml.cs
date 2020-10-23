@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using memory.models;
 using memory.viewmodels;
 
 namespace memory
