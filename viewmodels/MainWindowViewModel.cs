@@ -12,7 +12,7 @@ namespace memory.viewmodels
 {
     class MainWindowViewModel
     {
-        private MemoryGame _Game;
+        private readonly MemoryGame _Game;
 
         public MainWindowViewModel()
         {
@@ -25,16 +25,17 @@ namespace memory.viewmodels
             if (obj != null)
             {
                 Card card = obj as Card;
-                Console.WriteLine("in canOpenCard:" + card.Id);
+                return Game.AcceptMove(card);
             }
-               
+            return false; 
             
-            return true;
+            
         }
 
         private void OpenCard(object obj)
         {
-            //throw new NotImplementedException();
+            Card card = obj as Card;
+            Game.DoMove(card);
         }
 
         public MemoryGame Game
