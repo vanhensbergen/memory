@@ -12,7 +12,7 @@ namespace memory.models
 {
     public class MemoryGame : INotifyPropertyChanged
     {
-
+        private const  int DELAY_TIME = 3000;
         public MemoryGame()
         {
             Cards = new List<Card>();
@@ -21,7 +21,7 @@ namespace memory.models
                 Cards.Add(new Card(i));
                 Cards.Add(new Card(i));
             }
-            //Shuffle();
+            Shuffle();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -55,7 +55,7 @@ namespace memory.models
             if (OpenCardCount == 2)
             {
                 Frozen = true;
-                Task.Delay(3000).ContinueWith(OnDelayEnded);
+                Task.Delay(DELAY_TIME).ContinueWith(OnDelayEnded);
             }
         }
 
@@ -95,9 +95,10 @@ namespace memory.models
             {
                 n--;
                 int k = rng.Next(n + 1);
-                Card tmp = Cards[k];
-                Cards[k] = Cards[n];
-                Cards[n] = tmp;
+                int tmp = Cards[k].Id;
+                Cards[k].Id = Cards[n].Id;
+                Cards[n].Id = tmp;
+                
             }
         }
         

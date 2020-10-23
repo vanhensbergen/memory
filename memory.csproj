@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="commands\RelayCommand.cs" />
     <Compile Include="models\Card.cs" />
+    <Compile Include="models\CardPlayer.cs" />
     <Compile Include="models\MemoryGame.cs" />
     <Compile Include="utils\CardStatus.cs" />
     <Compile Include="viewmodels\MainWindowViewModel.cs" />
