@@ -22,8 +22,13 @@ namespace memory.viewmodels
 
         private bool CanOpenCard(object obj)
         {
-            if(obj!=null)
-            Console.WriteLine("in canOpenCard:"+obj);
+            if (obj != null)
+            {
+                Card card = obj as Card;
+                Console.WriteLine("in canOpenCard:" + card.Id);
+            }
+               
+            
             return true;
         }
 

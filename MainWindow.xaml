@@ -8,6 +8,14 @@
         mc:Ignorable="d"
         x:Name="mainwindow"
         Title="memory" Height="800" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="cardfieldcommand" TargetType="usercontrols:CardField">
+                <Setter Property="Command" Value="{Binding ElementName=itemscontrol, Path=DataContext.OpenCardCommand }"/>
+                <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Self},Path=DataContext}"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black">
         <ItemsControl ItemsSource="{Binding Game.Cards, Mode=OneTime}" x:Name="itemscontrol">
             <ItemsControl.ItemTemplate>
@@ -16,8 +24,7 @@
                         CardId="{Binding Id, Mode=OneWay}"
                         Status="{Binding Status, Mode=OneWay}"
                         Width="98" Height="126" Padding="4"
-                        Command="{Binding ElementName=itemscontrol, Path = DataContext.OpenCardCommand}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                        Style="{StaticResource cardfieldcommand}"
                         />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
