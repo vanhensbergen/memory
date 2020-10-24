@@ -1,14 +1,15 @@
 ﻿using memory.utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 
 namespace memory.models
 {
-    public class MemoryGame
+    public class MemoryGame:INotifyPropertyChanged
     {
-        private const  int DELAY_TIME = 3000;
+        private const  int DELAY_TIME = 1000;
         public List<Card> Cards { get; }
         internal List<CardPlayer> Players { get; private set; }
         public MemoryGame()
@@ -30,9 +31,27 @@ namespace memory.models
                     IsActive = false
                 }
             };
-            Shuffle();
+           // Shuffle();
+            Startable = true;
         }
 
+        internal void Start()
+        {
+            Startable = false;
+            if (GameFinished)
+            {
+                Cards.ForEach(x => x.Status = CardStatus.CLOSED);
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyname)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+        }
+
+        public bool Startable { set; get; }
         private CardPlayer ActivePlayer
         {
             get { return Players.Find(x => x.IsActive); }
@@ -53,6 +72,7 @@ namespace memory.models
             {
                 return false;
             }
+            if (Startable) return false;
             if (OpenCardCount == 2)
             {
                 return false;
@@ -75,7 +95,13 @@ namespace memory.models
             }
         }
 
-
+        public bool GameFinished
+        {
+            get 
+            {
+                return Cards.TrueForAll(x => x.Status == CardStatus.FOUND);  
+            }
+        }
 
         private int OpenCardCount {
             get
@@ -83,6 +109,8 @@ namespace memory.models
                 return Cards.FindAll(x => x.Status == CardStatus.OPEN).Count;
             }
         }
+
+       
 
         private void OnDelayEnded(Task obj)
         {
@@ -92,6 +120,7 @@ namespace memory.models
             {
                 openedCards.ForEach(x => x.Status = CardStatus.FOUND);
                 ActivePlayer.AddFoundCards(openedCards);
+                Startable = GameFinished;
                 return;
             }
             openedCards.ForEach(x => x.Status = CardStatus.CLOSED);

@@ -17,7 +17,20 @@ namespace memory.viewmodels
         public MainWindowViewModel()
         {
             _Game = new MemoryGame();
-            OpenCardCommand = new RelayCommand(CanOpenCard, OpenCard);
+            OpenCardCommand = new RelayCommand(CanOpenCard, DoOpenCard);
+            StartCommand = new RelayCommand(CanStart, DoStart);
+
+        }
+
+        private bool CanStart(object obj)
+        {
+            // return Game.Startable;
+            return true;
+        }
+
+        private void DoStart(object obj)
+        {
+            Game.Start();
         }
 
         private bool CanOpenCard(object obj)
@@ -31,13 +44,14 @@ namespace memory.viewmodels
             
             
         }
-
-        private void OpenCard(object obj)
+        public ICommand StartCommand { set; get; }
+      
+        private void DoOpenCard(object obj)
         {
             Card card = obj as Card;
             Game.DoMove(card);
         }
-
+        
         public MemoryGame Game
         {
             get { return _Game; }

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="memory.models.Card" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAAQAoAAAAAAAgAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>models\Card.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="memory.models.CardPlayer" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAEABAAAQAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\CardPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="memory.models.MemoryGame">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAEAAAQAAAACEAAAAAAgIAACgAAAAAAAAAIAgEAA=</HashCode>
+      <FileName>models\MemoryGame.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Cards" />
+      <Property Name="Players" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="memory.viewmodels.MainWindowViewModel">
+    <Position X="5.5" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAhAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>viewmodels\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_Game" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
