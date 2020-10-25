@@ -24,8 +24,8 @@ namespace memory.viewmodels
 
         private bool CanStart(object obj)
         {
-            // return Game.Startable;
-            return true;
+            return Game.Startable;
+            
         }
 
         private void DoStart(object obj)

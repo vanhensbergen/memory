@@ -38,6 +38,7 @@ namespace memory.models
         internal void Start()
         {
             Startable = false;
+            OnPropertyChanged("Startable");
             if (GameFinished)
             {
                 Cards.ForEach(x => x.Status = CardStatus.CLOSED);
@@ -99,7 +100,13 @@ namespace memory.models
         {
             get 
             {
-                return Cards.TrueForAll(x => x.Status == CardStatus.FOUND);  
+                bool isFinished = Cards.TrueForAll(x => x.Status == CardStatus.FOUND);
+                if(isFinished)
+                {
+                    Startable = true;
+                    OnPropertyChanged("Startable");
+                }
+                return isFinished;
             }
         }
 
@@ -120,7 +127,7 @@ namespace memory.models
             {
                 openedCards.ForEach(x => x.Status = CardStatus.FOUND);
                 ActivePlayer.AddFoundCards(openedCards);
-                Startable = GameFinished;
+                bool isGameFinished = GameFinished;
                 return;
             }
             openedCards.ForEach(x => x.Status = CardStatus.CLOSED);
