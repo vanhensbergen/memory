@@ -10,6 +10,7 @@ namespace memory.models
     public class MemoryGame:INotifyPropertyChanged
     {
         private const  int DELAY_TIME = 1000;
+        private bool _Startable;
         public List<Card> Cards { get; }
         internal List<CardPlayer> Players { get; private set; }
         public MemoryGame()
@@ -39,11 +40,8 @@ namespace memory.models
         {
             Startable = false;
             OnPropertyChanged("Startable");
-            Console.WriteLine("button moet weer disabled worden");
-            if (GameFinished)
-            {
-                Cards.ForEach(x => x.Status = CardStatus.CLOSED);
-            }
+            Console.WriteLine("button moet nu disabled worden");
+            Cards.ForEach(x => x.Status = CardStatus.CLOSED);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -53,7 +51,7 @@ namespace memory.models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
-        public bool Startable { set; get; }
+        public bool Startable { private set { _Startable = value; OnPropertyChanged("Startable"); } get { return _Startable; } }
         private CardPlayer ActivePlayer
         {
             get { return Players.Find(x => x.IsActive); }
@@ -101,14 +99,7 @@ namespace memory.models
         {
             get 
             {
-                bool isFinished = Cards.TrueForAll(x => x.Status == CardStatus.FOUND);
-                if(isFinished)
-                {
-                    Startable = true;
-                    OnPropertyChanged("Startable");
-                    Console.WriteLine("button moet weer enabled worden");
-                }
-                return isFinished;
+                return Cards.TrueForAll(x => x.Status == CardStatus.FOUND); ;
             }
         }
 
@@ -129,7 +120,13 @@ namespace memory.models
             {
                 openedCards.ForEach(x => x.Status = CardStatus.FOUND);
                 ActivePlayer.AddFoundCards(openedCards);
-                bool isGameFinished = GameFinished;
+                bool IsGameFinished = GameFinished;
+                if (IsGameFinished)
+                {
+                    Startable = true;
+
+                    //more todo...
+                }
                 return;
             }
             openedCards.ForEach(x => x.Status = CardStatus.CLOSED);
