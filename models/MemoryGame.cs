@@ -39,8 +39,6 @@ namespace memory.models
         internal void Start()
         {
             Startable = false;
-            OnPropertyChanged("Startable");
-            Console.WriteLine("button moet nu disabled worden");
             Cards.ForEach(x => x.Status = CardStatus.CLOSED);
         }
 
