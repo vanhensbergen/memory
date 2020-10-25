@@ -46,6 +46,6 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Button Grid.Row="1" Grid.Column="1" MaxWidth="100" Margin="5" Command="{Binding StartCommand }" Content="START"/>
+        <Button Grid.Row="1" Grid.Column="1" MaxWidth="100" Margin="5" Command="{Binding StartCommand }" IsEnabled="{Binding Game.Startable, Mode=OneWay}" Content="START"/>
     </Grid>
 </Window>

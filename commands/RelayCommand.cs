@@ -9,8 +9,8 @@ namespace memory.commands
 {
     public class RelayCommand : ICommand
     {
-        private Predicate<object> _CanExecute;
-        private Action<object> _Execute;
+        private readonly Predicate<object> _CanExecute;
+        private readonly Action<object> _Execute;
 
         public RelayCommand(Predicate<object> canExecute, Action<object> execute)
         {
@@ -26,7 +26,8 @@ namespace memory.commands
 
         public bool CanExecute(object parameter)
         {
-            return (bool)(_CanExecute?.Invoke(parameter));
+            
+            return _CanExecute==null || (bool)(_CanExecute.Invoke(parameter));
         }
 
         public void Execute(object parameter)

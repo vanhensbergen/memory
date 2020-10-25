@@ -39,6 +39,7 @@ namespace memory.models
         {
             Startable = false;
             OnPropertyChanged("Startable");
+            Console.WriteLine("button moet weer disabled worden");
             if (GameFinished)
             {
                 Cards.ForEach(x => x.Status = CardStatus.CLOSED);
@@ -105,6 +106,7 @@ namespace memory.models
                 {
                     Startable = true;
                     OnPropertyChanged("Startable");
+                    Console.WriteLine("button moet weer enabled worden");
                 }
                 return isFinished;
             }

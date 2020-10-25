@@ -18,14 +18,10 @@ namespace memory.viewmodels
         {
             _Game = new MemoryGame();
             OpenCardCommand = new RelayCommand(CanOpenCard, DoOpenCard);
-            StartCommand = new RelayCommand(CanStart, DoStart);
+            //StartCommand krijgt géén CanStart methode want dat enabled de button niet utomatisch; wordt nu geregeld door binding in 
+            //de xaml van de button
+            StartCommand = new RelayCommand(null, DoStart);
 
-        }
-
-        private bool CanStart(object obj)
-        {
-            return Game.Startable;
-            
         }
 
         private void DoStart(object obj)
