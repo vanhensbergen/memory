@@ -30,6 +30,7 @@
             <RowDefinition Height="760"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <ItemsControl ItemsSource="{Binding Game.Cards, Mode=OneTime}" x:Name="itemscontrol" Grid.Row="0" Grid.Column="1">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

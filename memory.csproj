@@ -61,7 +61,6 @@
     <Compile Include="models\MemoryGame.cs" />
     <Compile Include="utils\CardStatus.cs" />
     <Compile Include="viewmodels\MainWindowViewModel.cs" />
-    <Compile Include="views\customcontrols\CardsContainer.cs" />
     <Compile Include="views\usercontrols\CardField.xaml.cs">
       <DependentUpon>CardField.xaml</DependentUpon>
     </Compile>
@@ -77,10 +76,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="views\usercontrols\CardField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,7 +108,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Themes\" />
+    <Folder Include="views\customcontrols\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="img\cardbackground.png" />
   </ItemGroup>
