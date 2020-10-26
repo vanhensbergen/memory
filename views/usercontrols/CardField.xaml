@@ -6,7 +6,20 @@
              xmlns:local="clr-namespace:memory.views.usercontrols"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="500">
-    <Button 
+    <UserControl.Resources>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Button Style="{StaticResource TransparentStyle}"
             Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=Command}"
             CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=CommandParameter}">
         <Canvas x:Name="canvas"
