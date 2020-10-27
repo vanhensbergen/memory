@@ -17,16 +17,25 @@ namespace memory.models
             _Id = id;
             Status = CardStatus.CLOSED;
         }
+        private Card(Card card)
+        {
+            _Id = card.Id;
+            Status = CardStatus.OPEN;
 
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string propertyname)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
-        
-        
 
+
+        public static Card CreateCopy(Card card)
+        {
+            return  new Card(card);
+
+        }
         public int Id
         {
             get { return _Id; }

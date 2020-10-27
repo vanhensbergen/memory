@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace memory.models
 {
-    class CardPlayer
+    public class CardPlayer
     {
 
         public CardPlayer(string name)
@@ -25,14 +27,15 @@ namespace memory.models
         {
             foreach(Card card in cards)
             {
-                FoundCards.Add(card);
+                Card copy = Card.CreateCopy(card);
+                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => FoundCards.Add(copy)));
             }
             
         }
 
         public void Reset()
         {
-            FoundCards.Clear();
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => FoundCards.Clear()));
         }
     }
 }

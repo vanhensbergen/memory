@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace memory.models
 {
-    public class MemoryGame:INotifyPropertyChanged
+    public class MemoryGame : INotifyPropertyChanged
     {
-        private const  int DELAY_TIME = 1000;
+        private const int DELAY_TIME = 1000;
         private bool _Startable;
         public List<Card> Cards { get; }
         internal List<CardPlayer> Players { get; private set; }
@@ -32,10 +32,16 @@ namespace memory.models
                     IsActive = false
                 }
             };
-           // Shuffle();
+            // Shuffle();
             Startable = true;
         }
-
+        public CardPlayer Player1{
+            get { return Players[0]; }
+        }
+        public CardPlayer Player2
+        {
+            get { return Players[1]; }
+        }
         internal void Start()
         {
             Startable = false;
