@@ -45,7 +45,7 @@ namespace memory.models
         internal void Start()
         {
             Startable = false;
-            Cards.ForEach(x => x.Status = CardStatus.CLOSED);
+            Reset();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -128,15 +128,18 @@ namespace memory.models
                 if (IsGameFinished)
                 {
                     Startable = true;
-
-                    //more todo...
                 }
                 return;
             }
             openedCards.ForEach(x => x.Status = CardStatus.CLOSED);
             SwapPlayers(); 
         }
-        
+
+        private void Reset()
+        {
+            Cards.ForEach(x => x.Status = CardStatus.CLOSED);
+            Players.ForEach(x => x.Reset());
+        }
 
         public void Shuffle()
         {

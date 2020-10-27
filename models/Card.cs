@@ -33,8 +33,7 @@ namespace memory.models
 
         public static Card CreateCopy(Card card)
         {
-            return  new Card(card);
-
+            return new Card(card);
         }
         public int Id
         {
