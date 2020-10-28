@@ -7,7 +7,7 @@
         xmlns:usercontrols="clr-namespace:memory.views.usercontrols"
         mc:Ignorable="d"
         x:Name="mainwindow"
-        Title="memory" Height="850" Width="1010"
+        Title="memory" Height="850" Width="1012"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
@@ -36,15 +36,15 @@
                     <usercontrols:CardField
                         CardId="{Binding Id, Mode=OneWay}"
                         Status="{Binding Status, Mode=OneWay}"
-                        Width="50"
+                        Width="49"
                         Height="63"
-                        Padding="0.5"
+                        Padding="1"
                         />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Background="AntiqueWhite"></WrapPanel>
+                    <WrapPanel Background="Red" HorizontalAlignment="Center"></WrapPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
@@ -63,7 +63,7 @@
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Margin="1 5 1 0"></WrapPanel>
+                    <WrapPanel Background="Red" HorizontalAlignment="Center" ></WrapPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>

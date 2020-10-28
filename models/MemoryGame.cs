@@ -12,7 +12,7 @@ namespace memory.models
         private const int DELAY_TIME = 1000;
         private bool _Startable;
         public List<Card> Cards { get; }
-        internal List<CardPlayer> Players { get; private set; }
+        private List<CardPlayer> Players { get; set; }
         public MemoryGame()
         {
             Cards = new List<Card>();
@@ -46,6 +46,7 @@ namespace memory.models
         {
             Startable = false;
             Reset();
+            Shuffle();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -141,7 +142,7 @@ namespace memory.models
             Players.ForEach(x => x.Reset());
         }
 
-        public void Shuffle()
+        private void Shuffle()
         {
             Random rng = new Random();
             int n = Cards.Count;

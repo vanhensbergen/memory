@@ -25,7 +25,6 @@
         <Canvas x:Name="canvas"
                 Width="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=ActualWidth}"
                 Height="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=ActualHeight}">
-            
         </Canvas>
     </Button>
 </UserControl>
