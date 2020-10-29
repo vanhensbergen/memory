@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace memory.models
 {
+    //todo
     public class Card:INotifyPropertyChanged
     {
         private int _Id;
